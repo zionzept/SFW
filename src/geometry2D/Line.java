@@ -43,7 +43,7 @@ public class Line extends Shape{
 	 * @return
 	 */
 	protected boolean normalizable(Point p) {
-		double rot = getRot() + PI / 2;
+		double rot = getRotation() + PI / 2;
 		boolean a = (p.getX() - p0.getX()) * Math.sin(rot) + (p.getY() - p0.getY()) * Math.cos(rot) >= 0;
 		boolean b = (p.getX() - p1.getX()) * Math.sin(rot) + (p.getY() - p1.getY()) * Math.cos(rot) <= 0;
 		return a && b;
@@ -56,11 +56,11 @@ public class Line extends Shape{
 	 * @return
 	 */
 	protected double normalDistance(Point p) {
-		return Math.abs((p.getX() - getX()) * Math.sin(getRot()) + (p.getY() - getY()) * Math.cos(getRot()));
+		return Math.abs((p.getX() - getX()) * Math.sin(getRotation()) + (p.getY() - getY()) * Math.cos(getRotation()));
 	}
 	
 	protected boolean leftOfLine(Point p) {
-		return (p.getX() - getX()) * Math.sin(getRot()) + (p.getY() - getY()) * Math.cos(getRot()) < 0;
+		return (p.getX() - getX()) * Math.sin(getRotation()) + (p.getY() - getY()) * Math.cos(getRotation()) < 0;
 	}
 	
 	@Override
@@ -169,7 +169,7 @@ public class Line extends Shape{
 	
 	@Override
 	public String toString() {
-		return "Segment\t[x=" + getX() + "][y=" + getY() + "][a=" + getRot() + "]";
+		return "Segment\t[x=" + getX() + "][y=" + getY() + "][a=" + getRotation() + "]";
 	}
 	
 	@Override

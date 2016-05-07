@@ -94,6 +94,7 @@ public class GeometryTest implements Handle {
 
 	@Override
 	public void update(double dt) {
+		q.rotate(dt);
 		input();
 		gameLoop();
 	}

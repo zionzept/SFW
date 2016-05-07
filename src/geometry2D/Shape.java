@@ -24,6 +24,10 @@ public abstract class Shape {
 		this.rot = rot;
 	}
 	
+	public void setParent(Shape parent) {
+		this.parent = parent;
+	}
+	
 	public void setTexture(Texture texture) {
 		this.texture = texture;
 	}
@@ -36,21 +40,21 @@ public abstract class Shape {
 		if (parent == null) {
 			return x;
 		}
-		return parent.getX() + x * Math.cos(parent.getRot()) + y * Math.sin(parent.getRot());
+		return parent.getX() + x * Math.cos(parent.getRotation()) + y * Math.sin(parent.getRotation());
 	}
 	
 	public double getY() {
 		if (parent == null) {
 			return y;
 		}
-		return parent.getY() + y * Math.cos(parent.getRot()) - x * Math.sin(parent.getRot());
+		return parent.getY() - y * Math.cos(parent.getRotation()) + x * Math.sin(parent.getRotation());
 	}
 	
-	public double getRot() {
+	public double getRotation() {
 		if (parent == null) {
 			return rot;
 		}
-		double a = parent.getRot() + rot;
+		double a = parent.getRotation() + rot;
 		while (a > PI) {
 			a -= 2 * PI;
 		}
@@ -60,14 +64,35 @@ public abstract class Shape {
 		return a;
 	}
 	
+	public double getDirection(Point point) {
+		return getDirection(point.getX(), point.getY());
+	}
+	
+	public double getDirection(double x, double y) {
+		return Math.atan2(y - this.y, x - this.x);
+	}
+	
 	public void setPosition(double x, double y) {
 		this.x = x;
 		this.y = y;
+	}
+	
+	public void setPosition(Point point) {
+		this.x = point.getX();
+		this.y = point.getY();
+	}
+	
+	public Point getPosition() {
+		return new Point(x, y);
 	}
 
 	public void move(double dx, double dy) {
 		x += dx;
 		y += dy;
+	}
+	
+	public void setRotation(double a) {
+		rot = a;
 	}
 	
 	public void rotate(double a) {

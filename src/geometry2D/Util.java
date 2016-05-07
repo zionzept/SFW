@@ -22,7 +22,7 @@ public class Util {
 	}
 	
 	public static double getRotationDifference(Line l0, Line l1) {
-		double dif = l1.getRot() - l0.getRot();
+		double dif = l1.getRotation() - l0.getRotation();
 		if (dif > Math.PI) {
 			dif -= 2 * Math.PI;
 		} else if (dif < -Math.PI) {

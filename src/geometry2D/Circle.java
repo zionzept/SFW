@@ -60,7 +60,7 @@ public class Circle extends Shape{
 				GL11.glBegin(GL11.GL_POLYGON); {
 					GL11.glVertex2d(getX(), getY());
 					for (int i = 0; i <= quality; i++) {
-						double angle = 2 * PI * i / quality + getRot();
+						double angle = 2 * PI * i / quality + getRotation();
 						GL11.glVertex2d(getX() + r * Math.cos(angle), getY() - r * Math.sin(angle));
 					}
 				} GL11.glEnd();
@@ -72,7 +72,7 @@ public class Circle extends Shape{
 					GL11.glVertex2d(getX(), getY());
 					for (int i = 0; i <= quality; i++) {
 						double texAngle = 2 * PI * i / quality;
-						double vertexAngle = texAngle + getRot();
+						double vertexAngle = texAngle + getRotation();
 						GL11.glTexCoord2d(.5 + .5 * Math.cos(texAngle), .5 - .5 * Math.sin(texAngle));
 						GL11.glVertex2d(getX() + r * Math.cos(vertexAngle), getY() - r * Math.sin(vertexAngle));
 					}
@@ -82,9 +82,9 @@ public class Circle extends Shape{
 			applyOutlineColor();
 			GL11.glDisable(GL11.GL_TEXTURE_2D);
 			GL11.glBegin(GL11.GL_LINES); {
-				double prevAngle = getRot();
+				double prevAngle = getRotation();
 				for (int i = 0; i < quality; i++) {
-					double angle = 2 * PI * (i + 1) / quality + getRot();
+					double angle = 2 * PI * (i + 1) / quality + getRotation();
 					GL11.glVertex2d(getX() + r * Math.cos(prevAngle), getY() - r * Math.sin(prevAngle));
 					GL11.glVertex2d(getX() + r * Math.cos(angle), getY() - r * Math.sin(angle));
 					prevAngle = angle;
